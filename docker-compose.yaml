@@ -1,0 +1,40 @@
+configs:
+  servers.json:
+    content: |
+      {
+        "PostgreSQL": {
+          "Version": "15.4-alpine"
+        }
+      }
+
+services:
+  pgsql:
+    image: postgres:${POSTGRES_VERSION}
+    ports:
+      - 5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: ${PGDATA}
+    volumes:
+      - pgdata:${PGDATA}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "postgres"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  pgadmin:
+    image: dpage/pgadmin4:${PGADMIN_VERSION}
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+    configs:
+      - servers.json:/pgadmin4/servers.json
+    ports:
+      - 38001:80
+
+volumes:
+  pgdata:
+  pgadmindata:
