@@ -61,6 +61,7 @@ services:
       - 38001:8080
     environment:
       - PGPASS_FILE=/pgpass-writable/pgpass
+      # This needs to be defined even if master password is not required
       - PGADMIN_DEFAULT_EMAIL=admin@pgadmin.org
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_ADDRESS=0.0.0.0
