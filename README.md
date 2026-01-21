@@ -1,5 +1,7 @@
 # pgAdmin Docker Compose Setup
 
+![pgAdmin Dashboard](assets/pgadmin-dashboard.png)
+
 This project provides a Docker Compose configuration to deploy **pgAdmin 4** alongside a **PostgreSQL** database. It includes an initialization container to securely handle password files.
 
 ## Features
@@ -26,7 +28,12 @@ POSTGRES_HOST=pgsql          # Hostname of the Postgres service (default: pgsql)
 POSTGRES_PORT=5432           # Port (default: 5432)
 POSTGRES_USER=postgres       # Username
 POSTGRES_PASSWORD=postgres   # Password
-POSTGRES_DB=postgres         # Database name
+POSTGRES_DB=mydb             # Database name (default: mydb)
+
+# pgAdmin Settings
+PGADMIN_DEFAULT_EMAIL=admin@pgadmin.org
+PGADMIN_DEFAULT_PASSWORD=admin
+
 ```
 
 ## Usage
