@@ -60,18 +60,18 @@ services:
     ports:
       - 38001:8080
     environment:
-      - PGPASS_FILE=/pgpass-writable/pgpass
+      PGPASS_FILE: /pgpass-writable/pgpass
       # This needs to be defined even if master password is not required
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-      - PGADMIN_LISTEN_ADDRESS=0.0.0.0
-      - PGADMIN_LISTEN_PORT=8080
-      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
-      - PGADMIN_CONFIG_SERVER_MODE=False
-      - POSTGRES_HOST=${POSTGRES_HOST:-pgsql}
-      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_DB=${POSTGRES_DB}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
+      PGADMIN_LISTEN_PORT: 8080
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: False
+      PGADMIN_CONFIG_SERVER_MODE: False
+      POSTGRES_HOST: ${POSTGRES_HOST:-pgsql}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
     depends_on:
       init-pgpass:
         condition: service_completed_successfully
